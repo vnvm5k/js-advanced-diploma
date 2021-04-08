@@ -1,0 +1,255 @@
+:root {
+  --cell-size: 64px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #000;
+  font-size: 16px;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  background-color: #f8f9fa;
+  text-align: center;
+  vertical-align: middle;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  border: none;
+}
+
+.controls {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.board-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.cell {
+  position: relative;
+}
+
+.cell.selected::before {
+  content: '';
+  display: block;
+  border: 4px;
+  border-radius: 32px;
+  box-sizing: border-box;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  opacity: 0.9;
+  position: absolute;
+}
+
+.cell.selected-yellow::before {
+  border-color: #ff0;
+  border-style: solid;
+}
+
+.cell.selected-green::before {
+  border-color: #0f0;
+  border-style: dashed;
+}
+
+.cell.selected-red::before {
+  border-color: #f00;
+  border-style: dashed;
+}
+
+.board.prairie {
+  --map-tile-top-left-url: url(46d63299c3420c030b4e41a98fffb125.png);
+  --map-tile-top-url: url(946aeb948db6313f1d85402123384570.png);
+  --map-tile-top-right-url: url(0ac7f8258ec7166dc9577c4d2a95763a.png);
+  --map-tile-bottom-left-url: url(26b5f224d8750119922dffe8883d4e22.png);
+  --map-tile-bottom-url: url(07d5e8127645225478b60078f6dab3f0.png);
+  --map-tile-bottom-right-url: url(2429af6d3a5796e3c34bd71ba5d8bba4.png);
+  --map-tile-left-url: url(546abb060a0837550fd135a25545db8a.png);
+  --map-tile-right-url: url(6a84ae91f5d985ddc9eeab64cdbb7ded.png);
+  --map-tile-center-url: url(0089a610e6611f679b502d65094b7a7a.png);
+}
+
+.board.desert {
+  --map-tile-top-left-url: url(258d884122fabfc2f31239bf7da6bcef.png);
+  --map-tile-top-url: url(dc3f97e7bbcd5ea1ded98b6bc701b8ae.png);
+  --map-tile-top-right-url: url(2f1e1970c2c20cf3a8d5f79ff4cb11de.png);
+  --map-tile-bottom-left-url: url(13edb269e39172ddd74f98ffb7173445.png);
+  --map-tile-bottom-url: url(f1703771380a9959d979a6ab43d79cb8.png);
+  --map-tile-bottom-right-url: url(5cf9c17d6a1ea7106a6c7e98376fbeee.png);
+  --map-tile-left-url: url(eb1f6e4f87b977012684883563d89914.png);
+  --map-tile-right-url: url(2c19971f327b288278bb0031383fc53c.png);
+  --map-tile-center-url: url(51e2a5de56bd631452fe633598620462.png);
+}
+
+.board.arctic {
+  --map-tile-top-left-url: url(eab6a2cc5e89a4dd8e3f09f1c91af06d.png);
+  --map-tile-top-url: url(e0aa3daf6d08c62c96d95d61e8ec9fc6.png);
+  --map-tile-top-right-url: url(d31d84c693f649766aeeba27f7942dce.png);
+  --map-tile-bottom-left-url: url(b27323cf850ed820855c69c1b3b177f1.png);
+  --map-tile-bottom-url: url(63aae58e4690953a385783eb52d098df.png);
+  --map-tile-bottom-right-url: url(ac9d74f57639792774bc77854d55bad2.png);
+  --map-tile-left-url: url(3d9503e0a850fda86f821441905805a6.png);
+  --map-tile-right-url: url(22e7c5ede3f747cbe27a932af781bb92.png);
+  --map-tile-center-url: url(246277b8ca590816b3e8d066a887c255.png);
+}
+
+.board.mountain {
+  --map-tile-top-left-url: url(ef1b0ea8c4e545d9aadc3df8b82f801f.png);
+  --map-tile-top-url: url(8b928c3eb136543e573a467dd35bc514.png);
+  --map-tile-top-right-url: url(a1d2321024649b9d8f5f1cfd9a354fdc.png);
+  --map-tile-bottom-left-url: url(1d70f1dab2dd418c361218394f334c7c.png);
+  --map-tile-bottom-url: url(f462d2ed6eedca1e4fd96e00ae18981b.png);
+  --map-tile-bottom-right-url: url(6bacb8e25ed9ecf726bfbf4d24985089.png);
+  --map-tile-left-url: url(c75f062dddba6e98fdc6859487902129.png);
+  --map-tile-right-url: url(26fdc25019c24e87f11a68aaa7ff75d3.png);
+  --map-tile-center-url: url(6f6f7c09bde970b2e41b860ce841ab7b.png);
+}
+
+.map-tile {
+  width: var(--cell-size);
+  height: var(--cell-size);
+}
+
+.map-tile-top-left {
+  background: var(--map-tile-top-left-url);
+}
+
+.map-tile-top {
+  background: var(--map-tile-top-url);
+}
+
+.map-tile-top-right {
+  background: var(--map-tile-top-right-url);
+}
+
+.map-tile-bottom-left {
+  background: var(--map-tile-bottom-left-url);
+}
+
+.map-tile-bottom {
+  background: var(--map-tile-bottom-url);
+}
+
+.map-tile-bottom-right {
+  background: var(--map-tile-bottom-right-url);
+}
+
+.map-tile-left {
+  background: var(--map-tile-left-url);
+}
+
+.map-tile-right {
+  background: var(--map-tile-right-url);
+}
+
+.map-tile-center {
+  background: var(--map-tile-center-url);
+}
+
+.character {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  position: absolute;
+  z-index: 99;
+}
+
+.character.generic {
+  background: url(0a77fc47d727eab6fd39f2d581f85751.png);
+}
+
+.character.bowman {
+  background: url(cec542854b228e61547a158559b0f857.png);
+}
+
+.character.daemon {
+  background: url(cf170a9fea1051b7424adf382224e753.png);
+}
+
+.character.magician {
+  background: url(c0fa2b75539f94144dc47e71859820b6.png);
+}
+
+.character.swordsman {
+  background: url(2007ec00c1d9f997e704a42598ef323a.png);
+}
+
+.character.undead {
+  background: url(f5c75398bcb5931f9f3cfc27ee903275.png);
+}
+
+.character.vampire {
+  background: url(bf0ed0dca1d1e6091d429e1cfcc90334.png);
+}
+
+.character.zombie {
+  background: url(296dfeac15e2377fc1dcca38541f129b.png);
+}
+
+.health-level {
+  top: 2px;
+  left: 7px;
+  position: absolute;
+  width: 50px;
+  height: 4px;
+  background: #000;
+}
+
+.health-level-indicator {
+  height: 4px;
+}
+
+.health-level-indicator-high {
+  background: #0f0;
+}
+
+.health-level-indicator-normal {
+  background: #ff0;
+}
+
+.health-level-indicator-critical {
+  background: #f00;
+}
+
+.damage {
+  position: absolute;
+  width: var(--cell-size);
+  text-align: center;
+  z-index: 999;
+  color: #f00;
+  font-weight: bold;
+  animation: 500ms fade ease-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    top: calc(var(--cell-size) * 0.5);
+    font-size: 1rem;
+  }
+  to {
+    opacity: 1;
+    top: -20px;
+    font-size: 1.5rem;
+  }
+}
+
